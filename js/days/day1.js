@@ -3,13 +3,8 @@ const getData = require("../index");
 const data = getData("../data/day1.txt");
 
 const getLists = (data) => {
-  const listOne = [];
-  const listTwo = [];
-  data.forEach((element) => {
-    const [elOne, elTwo] = element.split("   ");
-    listOne.push(elOne);
-    listTwo.push(elTwo);
-  });
+  const listOne = data.map((element) => element.split("   ")[0]);
+  const listTwo = data.map((element) => element.split("   ")[1]);
 
   return {
     listOne,
@@ -20,21 +15,11 @@ const getLists = (data) => {
 const countDistance = (num1, num2) => Math.abs(num1 - num2);
 
 const getDistanceList = (arr1, arr2) => {
-  const listDistance = [];
-  for (let i = 0; i < arr1.length; i++) {
-    const distance = countDistance(arr1[i], arr2[i]);
-    listDistance.push(distance);
-  }
-  return listDistance;
+  return arr1.map((item, index) => countDistance(item, arr2[index]));
 };
 
 const getSimilarityList = (arr1, arr2) => {
-  const listSimilarity = [];
-  for (let i = 0; i < arr1.length; i++) {
-    const occurrenceNumber = arr2.filter((item) => item === arr1[i]).length;
-    listSimilarity.push(occurrenceNumber * arr1[i]);
-  }
-  return listSimilarity;
+  return arr1.map((item) => arr2.filter((el) => item === el).length * item);
 };
 
 const part1 = (input) => {
