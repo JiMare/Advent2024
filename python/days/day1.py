@@ -16,19 +16,11 @@ def count_distance(num1, num2):
 
 
 def get_distance_list(arr1, arr2):
-    list_distance = []
-    for i in range(len(arr1)):
-        distance = count_distance(arr1[i], arr2[i])
-        list_distance.append(distance)
-    return list_distance
+    return list(map(count_distance, arr1, arr2))
 
 
 def get_similarity_list(arr1, arr2):
-    list_distance = []
-    for i in range(len(arr1)):
-        occurrence_number = arr2.count(arr1[i])
-        list_distance.append(occurrence_number * int(arr1[i]))
-    return list_distance
+    return [arr2.count(x) * int(x) for x in arr1]
 
 
 def part1(input_data):
