@@ -31,8 +31,8 @@ const getDistanceList = (arr1, arr2) => {
 const getSimilarityList = (arr1, arr2) => {
   const listSimilarity = [];
   for (let i = 0; i < arr1.length; i++) {
-    const occurenceNumber = arr2.filter((item) => item === arr1[i]).length;
-    listSimilarity.push(occurenceNumber * arr1[i]);
+    const occurrenceNumber = arr2.filter((item) => item === arr1[i]).length;
+    listSimilarity.push(occurrenceNumber * arr1[i]);
   }
   return listSimilarity;
 };
