@@ -44,10 +44,8 @@ const isLevelSafe = (level) => {
   if (level[0] - level[1] > 0) {
     if (!isAllIncrease(level)) return false;
   } else {
-    for (let i = 0; i < level.length - 1; i++) {
-      if (!isAllDecrease(level)) {
-        return false;
-      }
+    if (!isAllDecrease(level)) {
+      return false;
     }
   }
 
