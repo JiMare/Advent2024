@@ -35,5 +35,5 @@ const part2 = (input) => {
   return getSimilarityList(listOne, listTwo).reduce((acc, sum) => acc + sum, 0);
 };
 
-console.log(part1(data));
-console.log(part2(data));
+console.log(part1(data)); //1660292
+console.log(part2(data)); //22776016
