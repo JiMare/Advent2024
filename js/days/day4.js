@@ -2,6 +2,8 @@ const getData = require("../index");
 
 const data = getData("../data/day4.txt");
 
+console.log(data);
+
 const getColumns = (rows) => {
   let columnStrings = Array(rows[0].length).fill("");
   rows.forEach((row) => {
@@ -84,4 +86,36 @@ const part1 = (input) => {
   return matchesInLines + matchesInColumns + matchesInDiagonals;
 };
 
+const part2 = (input) => {
+  let counter = 0;
+  const rows = input.map((row) => row.split(""));
+  for (let i = 0; i < rows.length - 2; i++) {
+    for (let j = 0; j < rows[i].length - 2; j++) {
+      if (rows[i][j] === "M" || rows[i][j] === "S") {
+        if (rows[i + 1][j + 1] && rows[i + 1][j + 1] === "A") {
+          if (
+            (rows[i][j] === "M" &&
+              rows[i + 2][j + 2] &&
+              rows[i + 2][j + 2] === "S") ||
+            (rows[i][j] === "S" &&
+              rows[i + 2][j + 2] &&
+              rows[i + 2][j + 2] === "M")
+          ) {
+            if (rows[i][j + 2] === "M" || rows[i][j + 2] === "S") {
+              if (
+                (rows[i][j + 2] === "M" && rows[i + 2][j] === "S") ||
+                (rows[i][j + 2] === "S" && rows[i + 2][j] === "M")
+              ) {
+                counter++;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return counter;
+};
+
 console.log(part1(data)); //2504
+console.log(part2(data)); //1923
