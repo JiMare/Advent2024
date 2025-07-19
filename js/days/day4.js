@@ -2,8 +2,6 @@ const getData = require("../index");
 
 const data = getData("../data/day4.txt");
 
-console.log(data);
-
 const getColumns = (rows) => {
   let columnStrings = Array(rows[0].length).fill("");
   rows.forEach((row) => {
