@@ -105,7 +105,7 @@ const part2 = () => {
     }
   }
 
-  matrixWithObstacleArr.forEach((matrixWithObstacle, index) => {
+  matrixWithObstacleArr.forEach((matrixWithObstacle) => {
     const result = getPositions(matrixWithObstacle);
     if (!result) {
       infiniteLoop++;
