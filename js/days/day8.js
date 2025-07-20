@@ -76,4 +76,43 @@ const part1 = () => {
   return antinodes.size;
 };
 
+const part2 = () => {
+  const charPositions = getCharPositions();
+  const combinations = [];
+  const antinodes = new Set();
+
+  for (const key of charPositions.keys()) {
+    combinations.push(...getCombinations(charPositions.get(key)));
+    const values = charPositions.get(key);
+    values.forEach((value) => antinodes.add(value));
+  }
+
+  combinations.forEach((combo) => {
+    let firstNode = combo.split(":")[0];
+    let secondNode = combo.split(":")[1];
+    while (isAntinodeValid(firstNode, matrix.length, matrix[0].length)) {
+      if (firstNode !== combo.split(":")[0]) {
+        antinodes.add(firstNode);
+      }
+      const [node1, _] = getAntinodes(`${firstNode}:${secondNode}`);
+      secondNode = firstNode;
+      firstNode = node1;
+    }
+
+    firstNode = combo.split(":")[0];
+    secondNode = combo.split(":")[1];
+    while (isAntinodeValid(secondNode, matrix.length, matrix[0].length)) {
+      if (secondNode !== combo.split(":")[1]) {
+        antinodes.add(secondNode);
+      }
+      const [, node2] = getAntinodes(`${firstNode}:${secondNode}`);
+      firstNode = secondNode;
+      secondNode = node2;
+    }
+  });
+
+  return antinodes.size;
+};
+
 console.log(part1()); //214
+console.log(part2()); //809
