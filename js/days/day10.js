@@ -82,6 +82,36 @@ const getTrailheadScore = (trailheadCoords) => {
   return stepCoords9.length;
 };
 
+const getTrailheadRating = (trailheadCoords) => {
+  const stepCoords1 = lookForStep(trailheadCoords, "1");
+  const stepCoords2 = stepCoords1
+    .map((coords) => lookForStep(coords, "2"))
+    .flat();
+  const stepCoords3 = stepCoords2
+    .map((coords) => lookForStep(coords, "3"))
+    .flat();
+  const stepCoords4 = stepCoords3
+    .map((coords) => lookForStep(coords, "4"))
+    .flat();
+  const stepCoords5 = stepCoords4
+    .map((coords) => lookForStep(coords, "5"))
+    .flat();
+  const stepCoords6 = stepCoords5
+    .map((coords) => lookForStep(coords, "6"))
+    .flat();
+  const stepCoords7 = stepCoords6
+    .map((coords) => lookForStep(coords, "7"))
+    .flat();
+  const stepCoords8 = stepCoords7
+    .map((coords) => lookForStep(coords, "8"))
+    .flat();
+  const stepCoords9 = stepCoords8
+    .map((coords) => lookForStep(coords, "9"))
+    .flat();
+
+  return stepCoords9.length;
+};
+
 const part1 = () => {
   const trailheadCoords = getTrailheadCoords();
 
@@ -90,4 +120,13 @@ const part1 = () => {
     .reduce((acc, value) => acc + value, 0);
 };
 
+const part2 = () => {
+  const trailheadCoords = getTrailheadCoords();
+
+  return trailheadCoords
+    .map((coords) => getTrailheadRating(coords))
+    .reduce((acc, value) => acc + value, 0);
+};
+
 console.log(part1()); //746
+console.log(part2()); //1541
